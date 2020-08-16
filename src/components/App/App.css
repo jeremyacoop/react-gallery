@@ -21,3 +21,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.gallery-list{
+  display: table;
+}
+
+.gallery-row{
+  display: inline;
+}
+
+.gallery-item{
+  display: table-cell;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  padding: 6vw;
+}

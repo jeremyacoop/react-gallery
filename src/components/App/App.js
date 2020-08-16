@@ -8,6 +8,7 @@ class App extends Component {
   state = {
     galleryList : [
       {
+        id : '',
         path : '',
         description : '',
         likes : 0
@@ -57,7 +58,7 @@ class App extends Component {
 //   } 
 
   likeGalleryItem = (id) => {
-    axios.put(`/gallery/${id}`)
+    axios.put(`/gallery/like/${id}`)
     .then((response) => {
       console.log(response.data.likes);
       this.getGalleryItems();

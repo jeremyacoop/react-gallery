@@ -5,24 +5,21 @@ class GalleryList extends Component {
     render() {
         return (
             <>
-                <div className="gallery-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th id="life-photos">ph</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <section className="gallery-list">
+                <div className="gallery-row" >
                             {this.props.galleryList.map((photo) => {
                                 console.log(photo);
                                 return (
-                                    <tr><GalleryItem key={photo.id} photo={photo} likeGalleryItem={this.props.likeGalleryItem} /></tr>
+                                    <GalleryItem 
+                                    key={photo.id} 
+                                    photo={photo} 
+                                    likeGalleryItem={this.props.likeGalleryItem} 
+                                    // swapElements={this.props.swapElements} 
+                                    />
                                 )
                             })}
-                        </tbody>
-                    </table>
-                </div>
-
+                                </div>
+                                </section>
             </>
         )
     }

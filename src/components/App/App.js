@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import galleryList from '../GalleryList/GalleryList';
+import GalleryList from '../GalleryList/GalleryList';
 
 class App extends Component {
 
   state = {
-    galleryList : [],
-    galleryItem: {
-
-    }
+    galleryList : [
+      {
+        path : '',
+        description : '',
+        likes : 0
+      }
+    ]
+  }
+  
+  componentDidMount(){
+    console.log('Yup!');
+    this.getGalleryItems();
   }
 
   getGalleryItems = () => {
@@ -24,7 +32,43 @@ class App extends Component {
     })
   }// end getGalleryItems
 
+// addGalleryItems = (item) => {
+//   console.log(item);
+//   axios.post('/gallery', item)
+//   .then((response) => {
+//     console.log(response);
+//     this.getGalleryItems();
+//   }).catch((error) => {
+//     console.log(error);
+//   })
+// }// end addGalleryItems
+
+// likeGalleryItems = () => {
+//   axios.put(`/gallery/${id}`)
+//   .then((response) => {
+//     console.log(response);
+//     this.setState(prevState => ({
+//       check: !prevState.check
+//     })
+//     this.getGalleryItems();
+//   }).catch((error) => {
+//       console.log(error);
+//   });
+//   } 
+
+  likeGalleryItem = (id) => {
+    axios.put(`/gallery/${id}`)
+    .then((response) => {
+      console.log(response.data.likes);
+      this.getGalleryItems();
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
+
   render() {
+    console.log(this.state.galleryList);
     return (
       <div className="App">
         <header className="App-header">
@@ -32,7 +76,8 @@ class App extends Component {
         </header>
         <br/>
         <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"/>
+        {/* <img src="images/goat_small.jpg"/> */}
+        <GalleryList galleryList={this.state.galleryList} likeGalleryItem={this.likeGalleryItem} />
       </div>
     );
   }
